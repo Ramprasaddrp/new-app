@@ -49,8 +49,7 @@ export default function VideoItemDetails() {
   const getVideoDetails = async () => {
     setStatus(apiStatus.loading)
     const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/videos/${id}`
-    console.log(url)
+    const url = `http://localhost:3001/${id}`
     const options = {
       method: 'GET',
       headers: {
@@ -60,15 +59,12 @@ export default function VideoItemDetails() {
     const response = await fetch(url, options)
     
     const data = await response.json()
-    console.log(data)
-    const fetchedData = data.video_details
+    const fetchedData = data
     if (response.ok) {
       const updatedData = {
-        channel: {
-          name: fetchedData.channel.name,
-          profileImageUrl: fetchedData.channel.profile_image_url,
-          subscriberCount: fetchedData.channel.subscriber_count,
-        },
+        name: fetchedData.channel_name,
+        profileImageUrl: fetchedData.channel_profile_image_url,
+        subscriberCount: fetchedData.subscriber_count,
         description: fetchedData.description,
         id: fetchedData.id,
         publishedAt: fetchedData.published_at,
@@ -119,13 +115,13 @@ export default function VideoItemDetails() {
             <Name>{time}</Name>
           </SmallContainer>
           <SmallContainer>
-            <LikeButton onClick={()=>setLike(!isLiked)} like={isLiked} type="button">
+            <LikeButton onClick={()=>setLike(!isLiked)} like={isLiked? "like":""} type="button">
               <BiLike />
               <p>Like</p>
             </LikeButton>
             <LikeButton
-              onClick={()=>setDislike(!isDisliked)}
-              isDislike={isDisliked}
+              onClick={()=>setDislike(!isLiked)}
+              isDislike={isLiked? "dislike": ""}
               type="button"
             >
               <BiDislike />
@@ -140,13 +136,13 @@ export default function VideoItemDetails() {
         <HorizontalLine />
         <SmallContainer>
           <ChannelLogo
-            src={videoDetails.channel.profileImageUrl}
+            src={videoDetails.profileImageUrl}
             alt="channel logo"
           />
           <SmallContainer column = {true}>
-            <Title theme={theme}>{videoDetails.channel.name}</Title>
+            <Title theme={theme}>{videoDetails.name}</Title>
             <Name theme={theme}>
-              {videoDetails.channel.subscriberCount} Subscribers
+              {videoDetails.subscriberCount} Subscribers
             </Name>
             <Description theme={theme}>{videoDetails.description}</Description>
           </SmallContainer>

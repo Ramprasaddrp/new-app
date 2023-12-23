@@ -24,7 +24,7 @@ export const VideoContainer = styled.div`
     display: flex;
   flex-direction: column;
   @media (max-width: 769px) {
-    width: 70vw;
+    width: 100%;
     top: 15vh;
   }
   overflow: scroll;
@@ -43,7 +43,7 @@ export const VideoContainer = styled.div`
       props.theme === 'dark' ? '#f9f9f9' : '#1e1e1f'};
 
 
-    
+  }
 `
 
 export const Video = styled.div`

@@ -28,12 +28,12 @@ const VideoThumbnail = props => {
               />
               <ThumbnailTextContainer>
                 <ChannelLogo
-                  src={details.channel.profileImageUrl}
+                  src={details.profileImageUrl}
                   alt="channel logo"
                 />
                 <div>
                   <Title theme={isDarkTheme}>{details.title}</Title>
-                  <Name theme={isDarkTheme}>{details.channel.name}</Name>
+                  <Name theme={isDarkTheme}>{details.name}</Name>
                   <ViewsAndTimeContainer>
                     <Name theme={isDarkTheme}>{details.viewCount} views</Name>
                     <Name theme={isDarkTheme} $dot ={"true"} as="div">

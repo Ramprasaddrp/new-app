@@ -43,10 +43,8 @@ export default function Home() {
 
 
   const updateData = data => ({
-    channel: {
-      name: data.channel.name,
-      profileImageUrl: data.channel.profile_image_url,
-    },
+    name: data.channel_name,
+    profileImageUrl: data.channel_profile_image_url,
     id: data.id,
     publishedAt: data.published_at,
     thumbnailUrl: data.thumbnail_url,
@@ -56,38 +54,37 @@ export default function Home() {
 
   
 
-  useEffect(()=>{
-    return ()=>getHomeVideos();
-  },[])
+  useEffect(()=>{return()=>getHomeVideos()},[])
 
 
   const getHomeVideos = async () => {
     setStatus(apiStatus.loading)
-    const url = "https://new-deployment-code-kad5.vercel.app/home"
+    const url = "http://localhost:3001/"
     const response = await fetch(url)
     const fetchData = await response.json()
-    const videoArray = []
-    const fetchedDetailsData = async(url, options)=>{
-      const response = await fetch(url, options)
-      const fetched = await response.json() 
-      return fetched
-    }
-    for (let i=0; i< fetchData.length; i+= 1){
-      const jwtToken = Cookies.get('jwt_token') 
-      const {id} = fetchData[i]
-    const url = `https://apis.ccbp.in/videos/${id}`
-    const options = {
-      method: 'GET',
-      headers: {
+    console.log("ram")
+    // const videoArray = []
+    // const fetchedDetailsData = async(url, options)=>{
+    //   const response = await fetch(url, options)
+    //   const fetched = await response.json() 
+    //   return fetched
+    // }
+    // for (let i=0; i< fetchData.length; i+= 1){
+    //   const jwtToken = Cookies.get('jwt_token') 
+    //   const {id} = fetchData[i]
+    // const url = `https://apis.ccbp.in/videos/${id}`
+    // const options = {
+    //   method: 'GET',
+    //   headers: {
 
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
-    const data = await fetchedDetailsData(url, options)
-       videoArray.push(data.video_details)
+    //     Authorization: `Bearer ${jwtToken}`,
+    //   },
+    // }
+    // const data = await fetchedDetailsData(url, options)
+    //    videoArray.push(data.video_details)
 
-    };
-    console.log(JSON.stringify(videoArray)) 
+    // };
+    // console.log(JSON.stringify(videoArray)) 
     if (response.ok) {
       const updatedData = fetchData.map(eachItem =>
         updateData(eachItem),
@@ -127,7 +124,7 @@ export default function Home() {
         )}
       </div>
 
-      
+
     )
   }
  

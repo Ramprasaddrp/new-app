@@ -25,7 +25,7 @@ const VideoItem = props => {
               />
               <VideoDescriptionContainer>
                 <Title theme={isDarkTheme}>{details.title}</Title>
-                <Name theme={isDarkTheme}>{details.channel.name}</Name>
+                <Name theme={isDarkTheme}>{details.name}</Name>
                 <ViewsAndTimeContainer>
                   <Name>{details.viewCount} views</Name>
                   <Name theme={isDarkTheme} dot as="div">
