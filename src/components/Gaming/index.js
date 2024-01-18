@@ -47,7 +47,7 @@ export default function Gaming () {
         Authorization: 'Bearer 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',
       },
     }
-    const url = 'https://new-deployment-code-kad5.vercel.app/gaming'
+    const url = 'http://localhost:3001/games'
     const response = await fetch(url, options)
     const data = await response.json()
     if (response.ok) {
