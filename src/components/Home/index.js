@@ -84,7 +84,7 @@ export default function Home() {
     //    videoArray.push(data.video_details)
 
     // };
-    // console.log(JSON.stringify(videoArray)) 
+    // console.log(JSON.stringify(videoArray)) ......
     if (response.ok) {
       const updatedData = fetchData.map(eachItem =>
         updateData(eachItem),
